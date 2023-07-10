@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Terraform
     steps:
+      - name: Build the Docker image
+        uses: actions/checkout@v3
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -27,5 +30,5 @@ jobs:
         #   ARM_SUBSCRIPTION_ID: "[Your Subscription ID]"
         #   ARM_TENANT_ID: "[Your Tenant ID]"
         # working-directory: ./staging # Use your environment folder
-        working-directory: ./
+        working-directory: ./vpc
         shell: bash
