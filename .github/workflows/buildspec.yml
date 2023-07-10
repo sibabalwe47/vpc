@@ -4,6 +4,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -24,4 +27,5 @@ jobs:
         #   ARM_SUBSCRIPTION_ID: "[Your Subscription ID]"
         #   ARM_TENANT_ID: "[Your Tenant ID]"
         # working-directory: ./staging # Use your environment folder
+        working-directory: ./
         shell: bash
