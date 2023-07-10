@@ -1,0 +1,13 @@
+name: VPC module build, test and deploy pipeline.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install terraform CLI
+      - run: terraform --version
