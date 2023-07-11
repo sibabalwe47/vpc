@@ -48,7 +48,10 @@ jobs:
           node-version: "14"
 
       - name: Install bats
-        run: npm install -g bats
+        environment: dev
+        run: |
+          npm install -g bats
+          echo ${{ secrets.MY_SECRET }}
 
       - name: Run bats
         run: bats -v
