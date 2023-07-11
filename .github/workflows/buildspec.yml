@@ -23,8 +23,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: module
-          path: path/**
-          retention-days: 1
+          path: ./*
 
   test:
     runs-on: ubuntu-latest
