@@ -32,7 +32,7 @@
 name: VPC module build, test and deploy pipeline.
 on: [push]
 permissions:
-  contents: read-all
+  contents: read
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
