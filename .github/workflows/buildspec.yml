@@ -4,9 +4,6 @@
 #     branches:
 #       - main
 
-# permissions:
-#   contents: read
-
 # jobs:
 #   terraform:
 #     runs-on: ubuntu-latest
@@ -32,25 +29,13 @@
 #         # working-directory: ./staging # Use your environment folder
 #         shell: bash
 
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: VPC module build, test and deploy pipeline.
 on: [push]
+permissions:
+  contents: read-all
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "14"
-
-      - name: Install bats
-        run: |
-          npm install -g bats
-          echo ${{ secrets.MY_SECRET }}
-
-      - name: Run bats
-        run: bats -v
