@@ -34,7 +34,7 @@ on: [push]
 permissions:
   contents: read
 jobs:
-  check-bats-version:
+  init:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -50,13 +50,17 @@ jobs:
         id: init
         run: terraform init
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name:
+
+  post_build:
+    runs-on: ubuntu-latest
+    steps:
       - name: Infracost installation and authentification
         run: |
           curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
           infracost --version
           infracost configure set api_key ${{ secrets.INFRACOST_API_KEY }}
           infracost breakdown --path .
-
-      - name: Terraform plan
-        id: plan
-        run: terraform plan
