@@ -53,3 +53,8 @@ jobs:
       - name: Terraform plan
         id: plan
         run: terraform plan
+
+      - name: Infracost installation
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+          infracost --version
