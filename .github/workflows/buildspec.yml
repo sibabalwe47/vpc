@@ -19,17 +19,31 @@ jobs:
         id: init
         run: terraform init
 
+      - name: Save script artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: module
+          path: path/**
+          retention-days: 1
+
   test:
     runs-on: ubuntu-latest
     needs: init
     steps:
       - name: Run module test
-        uses: actions/checkout@v3
+        uses: actions/download-artifact@v3
+        with:
+          name: module
 
   post_build:
     runs-on: ubuntu-latest
     needs: test
     steps:
+      - name: Download module artifacts from previous jobs
+        uses: actions/download-artifact@v3
+        with:
+          name: module
+
       - name: Infracost installation and authentification
         run: |
           curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
