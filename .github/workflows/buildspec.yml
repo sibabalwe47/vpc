@@ -53,12 +53,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name:
+      - name: Run module test
+        uses: actions/checkout@v3
 
   post_build:
     runs-on: ubuntu-latest
     steps:
-      - name: Infracost installation and authentification
+      - uses: actions/checkout@v3
+        name: Infracost installation and authentification
         run: |
           curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
           infracost --version
