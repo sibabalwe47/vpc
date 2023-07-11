@@ -1,33 +1,47 @@
-name: VPC module build, test and deploy pipeline.
-on:
-  push:
-    branches:
-      - main
+# name: VPC module build, test and deploy pipeline.
+# on:
+#   push:
+#     branches:
+#       - main
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
+# jobs:
+#   terraform:
+#     runs-on: ubuntu-latest
+#     name: Terraform
+#     steps:
+#       - name: Build the Docker image
+#         uses: actions/checkout@v3
+
+#       - name: Setup Terraform
+#         uses: hashicorp/setup-terraform@v2
+#         with:
+#           terraform_version: 1.1.9
+#           terraform_wrapper: false
+
+#       - name: Terraform Init
+#         id: init
+#         run: terraform init
+#         # env:
+#         #   ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }} # This doesn't have to be a secret. Client IDs are not sensitive.
+#         #   ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+#         #   ARM_SUBSCRIPTION_ID: "[Your Subscription ID]"
+#         #   ARM_TENANT_ID: "[Your Tenant ID]"
+#         # working-directory: ./staging # Use your environment folder
+#         shell: bash
+
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
 jobs:
-  terraform:
+  check-bats-version:
     runs-on: ubuntu-latest
-    name: Terraform
     steps:
-      - name: Build the Docker image
-        uses: actions/checkout@v3
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          terraform_version: 1.1.9
-          terraform_wrapper: false
-
-      - name: Terraform Init
-        id: init
-        run: terraform init
-        # env:
-        #   ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }} # This doesn't have to be a secret. Client IDs are not sensitive.
-        #   ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        #   ARM_SUBSCRIPTION_ID: "[Your Subscription ID]"
-        #   ARM_TENANT_ID: "[Your Tenant ID]"
-        # working-directory: ./staging # Use your environment folder
-        shell: bash
+          node-version: "14"
+      - run: npm install -g bats
+      - run: bats -v
