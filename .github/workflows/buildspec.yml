@@ -3,7 +3,7 @@ on: [push]
 permissions:
   contents: read
 jobs:
-  init:
+  terraform_init:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -25,7 +25,7 @@ jobs:
           name: module
           path: ./*
 
-  test:
+  terraform_test:
     runs-on: ubuntu-latest
     needs: init
     steps:
@@ -33,6 +33,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: module
+
+      - name: Pending....
+        run: echo "Required knowledge of GoLand and Terratest."
+
+  terraform_plan:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Terraform pan
 
   post_build:
     runs-on: ubuntu-latest
