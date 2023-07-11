@@ -24,6 +24,7 @@ jobs:
         with:
           name: module
           path: ./*
+          retention-days: 1
 
   terraform_plan:
     runs-on: ubuntu-latest
