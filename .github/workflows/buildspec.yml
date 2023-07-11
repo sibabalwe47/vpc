@@ -61,7 +61,7 @@ jobs:
 
   terraform_test:
     runs-on: ubuntu-latest
-    needs: terraform_plan
+    needs: [terraform_plan, terraform_cost]
     steps:
       - name: Run module test
         uses: actions/download-artifact@v3
