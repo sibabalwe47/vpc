@@ -40,7 +40,6 @@ jobs:
       - name: Terraform plan
         working-directory: /home/runner/work/vpc/vpc/module
         run: |
-
           chmod +x .terraform/providers/registry.terraform.io/hashicorp/aws/5.7.0/linux_amd64/terraform-provider-aws_v5.7.0_x5
           terraform plan
 
@@ -59,8 +58,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: terraform_test
     steps:
-      - name: Terraform plan
+      - name: Terraform artifacts from terraform_plan
         uses: actions/download-artifact@v3
+
+      - name: Terraform apply
+        working-directory: /home/runner/work/vpc/vpc/module
+        run: |
+          chmod +x .terraform/providers/registry.terraform.io/hashicorp/aws/5.7.0/linux_amd64/terraform-provider-aws_v5.7.0_x5
+          terraform plan
 
   terraform_cost:
     runs-on: ubuntu-latest
