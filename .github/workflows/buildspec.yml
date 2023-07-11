@@ -39,9 +39,16 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: "14"
-      - run: npm install -g bats
-      - run: bats -v
+
+      - name: Install bats
+        run: npm install -g bats
+
+      - name: Run bats
+        run: bats -v
