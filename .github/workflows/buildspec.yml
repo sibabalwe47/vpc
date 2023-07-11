@@ -25,24 +25,23 @@ jobs:
           name: module
           path: ./*
 
-  terraform_test:
+  terraform_plan:
     runs-on: ubuntu-latest
     needs: terraform_init
+    steps:
+      - name: Terraform plan
+        uses: actions/download-artifact@v3
+
+  terraform_test:
+    runs-on: ubuntu-latest
+    needs: terraform_plan
     steps:
       - name: Run module test
         uses: actions/download-artifact@v3
         with:
           name: module
-
       - name: Pending....
         run: echo "Required knowledge of GoLand and Terratest."
-
-  terraform_plan:
-    runs-on: ubuntu-latest
-    needs: terraform_test
-    steps:
-      - name: Terraform plan
-        uses: actions/download-artifact@v3
 
   terraform_apply:
     runs-on: ubuntu-latest
@@ -51,7 +50,7 @@ jobs:
       - name: Terraform plan
         uses: actions/download-artifact@v3
 
-  terraform_post_build:
+  terraform_cost:
     runs-on: ubuntu-latest
     needs: terraform_apply
     steps:
