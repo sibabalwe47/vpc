@@ -33,8 +33,11 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
-      - name: Terraform plan
+      - name: Terraform artifacts from terraform_init
         uses: actions/download-artifact@v3
+
+      - name: Terraform plan
+        run: terraform plan
 
   terraform_test:
     runs-on: ubuntu-latest
