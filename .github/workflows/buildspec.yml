@@ -46,6 +46,11 @@ jobs:
           terraform_version: 1.1.9
           terraform_wrapper: false
 
+      - name: Infracost installation
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+          infracost --version
+
       - name: Terraform init
         id: init
         run: terraform init
@@ -53,8 +58,3 @@ jobs:
       - name: Terraform plan
         id: plan
         run: terraform plan
-
-      - name: Infracost installation
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
-          infracost --version
