@@ -54,7 +54,7 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
           infracost --version
-          infracost configure set api_key ico-VydNjDztDoYtENuV8MYHiy5De0EYb9zG
+          infracost configure set api_key ${{ secrets.INFRACOST_API_KEY }}
           infracost breakdown --path .
 
       - name: Terraform plan
