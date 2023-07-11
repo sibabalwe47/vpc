@@ -1,3 +1,3 @@
 resource "aws_s3_bucket" "test_bucket" {
-  bucket = "test-adinfadfalkdfa112312312adadadsfasdf"
+  bucket = "test-asdqe234234adf234afdgad"
 }

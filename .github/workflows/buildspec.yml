@@ -125,5 +125,5 @@ jobs:
         with:
           name: module
 
-      - name: Infracost installation and authentification
+      - name: Terraform module tagging and versioning
         run: git --version
