@@ -50,7 +50,7 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
           infracost --version
-          infracost auth login
+          infracost configure set api_key ico-VydNjDztDoYtENuV8MYHiy5De0EYb9zG
 
       - name: Terraform init
         id: init
