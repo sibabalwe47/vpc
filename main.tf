@@ -15,7 +15,7 @@ module "vpc" {
   single_nat_gateway                 = true
   default_vpc_enable_dns_hostnames   = true
   default_vpc_enable_dns_support     = true
-  map_public_ip_on_launch            = true
+  map_public_ip_on_launch            = false
   enable_vpn_gateway                 = false
 
 
