@@ -5,7 +5,7 @@ module "vpc" {
   source                             = "terraform-aws-modules/vpc/aws"
   name                               = var.name
   cidr                               = var.vpc_cidr
-  azs                                = ["${var.region}a", "${var.region}b", "${var.region}c"]
+  azs                                = local.azs
   public_subnets                     = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k)]
   private_subnets                    = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 4)]
   database_subnets                   = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 8)]
