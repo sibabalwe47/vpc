@@ -35,5 +35,5 @@
 # }
 
 resource "aws_s3_bucket" "this" {
-  bucket = "ter-amasdflkj-asdfaskdlfasf"
+  bucket = "ter-amasdflkj-asdfaskdlfasfasdfasda"
 }
