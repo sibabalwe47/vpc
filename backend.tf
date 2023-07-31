@@ -1,9 +1,9 @@
-terraform {
-  cloud {
-    organization = "taj-20230326"
-
-    workspaces {
-      name = "vpc-module"
-    }
-  }
-}
+#terraform {
+#  cloud {
+#    organization = "taj-20230326"
+#
+#    workspaces {
+#      name = "vpc-module"
+#    }
+#  }
+#}
